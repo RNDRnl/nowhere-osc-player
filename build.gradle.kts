@@ -7,7 +7,7 @@ import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 group = "org.openrndr.template"
 version = "0.3.14"
 
-val applicationMainClass = "TemplateProgramKt"
+val applicationMainClass = "OSCappKt"
 
 /*  Which additional (ORX) libraries should be added to this project. */
 val orxFeatures = setOf(
@@ -35,7 +35,7 @@ val orxFeatures = setOf(
     "orx-noise",
 //  "orx-obj-loader",
     "orx-olive",
-//  "orx-osc",
+    "orx-osc",
 //  "orx-palette",
 //  "orx-poisson-fill",
 //  "orx-rabbit-control,
@@ -58,10 +58,10 @@ val openrndrFeatures = setOf(
 
 /*  Which version of OPENRNDR and ORX should be used? */
 val openrndrUseSnapshot = false
-val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.44"
+val openrndrVersion = if (openrndrUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.44-rc.13"
 
 val orxUseSnapshot = false
-val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.53"
+val orxVersion = if (orxUseSnapshot) "0.4.0-SNAPSHOT" else "0.3.53-rc.7"
 
 //<editor-fold desc="This is code for OPENRNDR, no need to edit this .. most of the times">
 val supportedPlatforms = setOf("windows", "macos", "linux-x64", "linux-arm64")
@@ -251,4 +251,6 @@ runtime {
     modules.empty()
     modules.add("jdk.unsupported")
     modules.add("java.management")
+    modules.add("java.sql")
+    modules.add("java.desktop")
 }
