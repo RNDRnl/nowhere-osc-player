@@ -1,4 +1,5 @@
 import org.openrndr.application
+import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.loadFont
 import org.openrndr.ffmpeg.VideoPlayerFFMPEG
 import org.openrndr.resourceUrl
@@ -12,12 +13,12 @@ fun main() = application {
 
     program {
 
-        val font = loadFont(resourceUrl("/default.otf"), 64.0)
+        val font = loadFont(resourceUrl("/default.otf"), 32.0)
         val oscLoader = OscLoader()
-        drawer.fontMap = font
 
         val videoPlayer = VideoPlayerFFMPEG.fromFile("data/osc_video.mp4")
         videoPlayer.play()
+
 
         val oldClock = clock
         val oldClockStart = clock()
@@ -35,7 +36,11 @@ fun main() = application {
 
         extend {
             videoPlayer.draw(drawer)
-            drawer.text("${seconds-startTime}", 250.0, 150.0)
+            drawer.fontMap = font
+
+            drawer.fill = ColorRGBa.GREEN
+            drawer.text("time: ${seconds-startTime}", 150.0, 150.0)
+
             oscLoader.dispatch(seconds-startTime)
         }
     }

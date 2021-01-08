@@ -1,5 +1,6 @@
 import org.openrndr.extra.osc.OSC
 import org.openrndr.resourceUrl
+import java.io.File
 import java.net.URL
 
 class OscLoader() {
@@ -12,7 +13,7 @@ class OscLoader() {
 
     init {
 
-        URL(resourceUrl("/osc_messages.csv")).readText().split("\n").forEach {
+        File("data/osc_messages.csv").readText().split("\n").forEach {
             csv.add(it.trim())
         }
 
@@ -41,7 +42,7 @@ class OscLoader() {
         }.filterIndexed { index, oscMessage ->
             oscMessage.hasBeenSend == false
         }.forEach {
-            println("send: ${it.timecode} ${it.hasBeenSend} ${it.channel} ${it.data} ${it.meta}")
+            // println("send: ${it.timecode} ${it.hasBeenSend} ${it.channel} ${it.data} ${it.meta}")
 
             var meta = it.meta.split(",")
             if(it.channel.equals("/nowhere/trigger")) {
@@ -55,12 +56,17 @@ class OscLoader() {
                 )
             }
 
+
             if(it.channel.equals("/nowhere/collection_change")) {
                 osc.send("/nowhere/collection_change", it.data.toDouble())
             }
 
             if(it.channel.equals("/nowhere/show_crop")) {
                 osc.send("/nowhere/show_crop", it.data.toDouble())
+            }
+
+            if(it.channel.equals("/nowhere/circle_pulse")) {
+                osc.send("/nowhere/circle_pulse", it.data.toDouble())
             }
 
             if(it.channel.equals("/nowhere/tick")) {
