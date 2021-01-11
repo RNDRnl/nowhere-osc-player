@@ -65,6 +65,10 @@ class OscLoader() {
                 osc.send("/nowhere/show_crop", it.data.toDouble())
             }
 
+            if(it.channel.equals("/nowhere/select_image")) {
+                osc.send("/nowhere/select_image", it.data.toDouble())
+            }
+
             if(it.channel.equals("/nowhere/circle_pulse")) {
                 osc.send("/nowhere/circle_pulse", it.data.toDouble())
             }
