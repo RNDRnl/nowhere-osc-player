@@ -16,7 +16,7 @@ fun main() = application {
         val font = loadFont(resourceUrl("/default.otf"), 32.0)
         val oscLoader = OscLoader()
 
-        val videoPlayer = VideoPlayerFFMPEG.fromFile("data/osc_video_.mov")
+        val videoPlayer = VideoPlayerFFMPEG.fromFile("data/osc_video.mov")
         videoPlayer.play()
 
         val oldClock = clock
