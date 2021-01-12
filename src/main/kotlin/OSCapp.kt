@@ -7,8 +7,8 @@ import org.openrndr.resourceUrl
 
 fun main() = application {
     configure {
-        width = 1920
-        height = 360
+        width = 1922
+        height = 324
     }
 
     program {
@@ -16,9 +16,8 @@ fun main() = application {
         val font = loadFont(resourceUrl("/default.otf"), 32.0)
         val oscLoader = OscLoader()
 
-        val videoPlayer = VideoPlayerFFMPEG.fromFile("data/osc_video.mp4")
+        val videoPlayer = VideoPlayerFFMPEG.fromFile("data/osc_video_.mov")
         videoPlayer.play()
-
 
         val oldClock = clock
         val oldClockStart = clock()
@@ -39,7 +38,7 @@ fun main() = application {
             drawer.fontMap = font
 
             drawer.fill = ColorRGBa.GREEN
-            drawer.text("time: ${seconds-startTime}", 150.0, 150.0)
+            drawer.text("time: ${seconds-startTime}", width-450.0, 50.0)
 
             oscLoader.dispatch(seconds-startTime)
         }
